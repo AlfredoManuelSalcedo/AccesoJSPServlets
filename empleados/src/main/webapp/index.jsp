@@ -36,7 +36,7 @@ crossorigin="anonymous"></script>
              ResultSet jefes = z.executeQuery("SELECT ENAME,EMPNO from EMP ORDER BY 1");
              
              Statement w = conexion.createStatement();
-             ResultSet departamentos = w.executeQuery("SELECT DNAME, DEPTNO from DEPT");
+             ResultSet departamentos = w.executeQuery("SELECT DNAME, DEPTNO from DEPT ORDER BY 1");
              %>
              <table class="table table-striped">
              <tr>
@@ -52,9 +52,9 @@ crossorigin="anonymous"></script>
              <form method="get" action="grabaSocio.jsp">
                 <tr>
                     <td><input type="text" name="empNo" size="5"></td>
-                    <td><input type="text" name="eName" size="30"></td>
+                    <td><input type="text" name="eName" size="5"></td>
                     <td><input type="text" name="job" size="5"></td>
-                    <td><select name="mgr" size="10">
+                    <td><select name="mgr">
                     <% while(jefes.next()){
                     	%>
                     	<option value="<%=jefes.getString("EMPNO") %>">
@@ -64,16 +64,24 @@ crossorigin="anonymous"></script>
                     }
                     %>
                     </select></td>
-                    <td><input type="text" name="sal" size="20"></td>
-                    <td><input type="text" name="comm" size="20"></td>
-                    <td><select name="DEPTNO" size="10">
-                    
+                    <td><input type="text" name="sal" size="5"></td>
+                    <td><input type="text" name="comm" size="5"></td>
+                    <td><select name="DEPTNO">
+                    <% while(departamentos.next()){
+                    	%>
+                    	<option value="<%=departamentos.getString("DEPTNO") %>">
+                    	<%=departamentos.getString("DNAME")%>
+                    	</option>
+                    	<%
+                    }
+                    %>
                     </select></td>
+                    <td><input type="text" name="hireDate" size="5"></td>
                     <td><button type="submit" value="Añadir" class="btn btn-primary">
                     <span class="glyphicon glyphicon-plus"></span>Añadir</button>
-                                                </td>
-                                            </tr>
-                                        </form>
+                    </td>
+                    </tr>
+                </form>
 		</div>
 	</div>
 
