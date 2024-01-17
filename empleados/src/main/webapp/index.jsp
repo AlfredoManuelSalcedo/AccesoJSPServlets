@@ -27,13 +27,13 @@ crossorigin="anonymous"></script>
                  <h2>EMPLEADOS</h2>
             </div>
              <% Class.forName("com.mysql.jdbc.Driver"); Connection
-             conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/baloncesto","root","root");
+             conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_scott","root","root");
              
              Statement s=conexion.createStatement(); 
-             ResultSet listado=s.executeQuery("SELECT * FROM socio"); 
+             ResultSet listado=s.executeQuery("SELECT * FROM EMP"); 
              
              Statement z = conexion.createStatement();
-             ResultSet jefes = z.executeQuery("SELECT ENAME,EMPNO from EMP");
+             ResultSet jefes = z.executeQuery("SELECT ENAME,EMPNO from EMP ORDER BY 1");
              
              Statement w = conexion.createStatement();
              ResultSet departamentos = w.executeQuery("SELECT DNAME, DEPTNO from DEPT");
@@ -55,7 +55,14 @@ crossorigin="anonymous"></script>
                     <td><input type="text" name="eName" size="30"></td>
                     <td><input type="text" name="job" size="5"></td>
                     <td><select name="mgr" size="10">
-                    
+                    <% while(jefes.next()){
+                    	%>
+                    	<option value="<%=jefes.getString("EMPNO") %>">
+                    	<%=jefes.getString("ENAME")%>
+                    	</option>
+                    	<%
+                    }
+                    %>
                     </select></td>
                     <td><input type="text" name="sal" size="20"></td>
                     <td><input type="text" name="comm" size="20"></td>
