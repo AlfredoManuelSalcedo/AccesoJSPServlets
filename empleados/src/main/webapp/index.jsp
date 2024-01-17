@@ -33,7 +33,7 @@ crossorigin="anonymous"></script>
              ResultSet listado=s.executeQuery("SELECT * FROM EMP"); 
              
              Statement z = conexion.createStatement();
-             ResultSet jefes = z.executeQuery("SELECT ENAME,EMPNO from EMP ORDER BY 1");
+             ResultSet jefes = z.executeQuery("SELECT ENAME,EMPNO FROM EMP WHERE EMPNO IN(SELECT DISTINCT MGR FROM EMP WHERE MGR IS NOT NULL) ORDER BY 1");
              
              Statement w = conexion.createStatement();
              ResultSet departamentos = w.executeQuery("SELECT DNAME, DEPTNO from DEPT ORDER BY 1");
@@ -82,6 +82,20 @@ crossorigin="anonymous"></script>
                     </td>
                     </tr>
                 </form>
+            <%
+            while(listado.next()){
+            	out.println("<tr><td>");
+                out.println(listado.getString("EMPNO")+"</td>"); 
+                out.println("<td>"+ listado.getString("ENAME")+"</td>");         
+                out.println("<td>"+ listado.getString("JOB")+"</td>");
+                out.println("<td>"+ listado.getString("MGR")+"</td>");
+                out.println("<td>"+ listado.getString("SAL")+"</td>");
+                out.println("<td>"+ listado.getString("COMM")+"</td>");
+                out.println("<td>"+ listado.getString("EMPNO")+"</td>");
+                out.println("<td>"+ listado.getString("HIREDATE")+"</td>");
+            }
+            %>
+           
 		</div>
 	</div>
 
