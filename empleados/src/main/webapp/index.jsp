@@ -93,9 +93,32 @@ crossorigin="anonymous"></script>
                 out.println("<td>"+ listado.getString("COMM")+"</td>");
                 out.println("<td>"+ listado.getString("EMPNO")+"</td>");
                 out.println("<td>"+ listado.getString("HIREDATE")+"</td>");
-            }
+            
             %>
-           
+            <td>
+                <form method="get" action="modificaSocio.jsp">
+                <input type="hidden" name="empno" value="<%=listado.getString("EMPNO")%>">
+                <input type="hidden" name="ename" value="<%=listado.getString("ENAME")%>">
+                <input type="hidden" name="job" value="<%=listado.getString("JOB")%>">
+                <input type="hidden" name="mgr" value="<%=listado.getString("MGR")%>">
+                <input type="hidden" name="sal" value="<%=listado.getString("SAL")%>">
+                <input type="hidden" name="comm" value="<%=listado.getString("COMM")%>">
+                <input type="hidden" name="deptno" value="<%=listado.getString("DEPTNO")%>">
+                <input type="hidden" name="hiredate" value="<%=listado.getString("HIREDATE")%>">
+                <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-pencil">
+                </span>Modificar</button>
+                </form>
+           </td>
+           <td>
+            <form method="get" action="borraSocio.jsp">
+            <input type="hidden" name="empNo" value="<%=listado.getString("EMPNO")%>"/>
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
+            </form>
+           </td></tr>
+           <%
+            }
+            conexion.close();
+           %>
 		</div>
 	</div>
 
